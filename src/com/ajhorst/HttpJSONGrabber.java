@@ -3,6 +3,8 @@ package com.ajhorst;
 public class HttpJSONGrabber {
 
 	public static void main(String[] args){
+		
+		// or whatever URL points to a valid JSON. Use http://jsonlint.com/ to check
 		String url = "http://imadeit.nu/CodeRed/person.json";
 		HttpJSONGetter getter = HttpJSONGetter.createBasicGetter(url);
 		
@@ -11,6 +13,10 @@ public class HttpJSONGrabber {
 		System.out.println(aj.toString());
 	}
 }
+
+/*
+ * Test class for our getter
+ */
 
 class Person{
 	private String name;

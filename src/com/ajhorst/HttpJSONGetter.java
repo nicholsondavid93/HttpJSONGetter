@@ -18,16 +18,22 @@ public class HttpJSONGetter {
 	private final HttpGet httpGet;
 	private final DefaultHttpClient httpclient;
 
+	// private constructor 
 	private HttpJSONGetter(String url){
 		httpGet = new HttpGet(url);
-		
 		httpclient = new DefaultHttpClient();
 	}
 	
+	// static factory method
 	public static HttpJSONGetter createBasicGetter(String url){
 		return new HttpJSONGetter(url);
 	}
 	
+	/* note: method call has to be parameterized AND a class object
+	 * must be passed as an argument. There's some funky Java at work here.
+	 * 
+	 * A call will look something like getter.<String>getClassFromJSON(String.class);
+	 */
 	public <T> T getClassFromJSON (Class<T> instanceClass){
 		HttpResponse response = null;
 		
@@ -52,7 +58,6 @@ public class HttpJSONGetter {
 		}
 		
 		Gson gson = new Gson();
-		
 		T result = gson.fromJson(jsonString, instanceClass);
 		
 		return result;
